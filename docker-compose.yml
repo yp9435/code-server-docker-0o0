@@ -1,5 +1,12 @@
 version: "3.9"
 services:
+  frontend:
+    build: ./client
+    ports:
+      - "3000:80"
+    depends_on:
+      - code-server
+
   code-server:
     image: codercom/code-server:latest
     environment:
@@ -9,5 +16,5 @@ services:
       - ./code-server-data:/home/coder/.local/share/code-server
       - ./code-server-config:/home/coder/.config/code-server
     command: ["--auth","password","--bind-addr","0.0.0.0:8080","/home/coder/project"]
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
