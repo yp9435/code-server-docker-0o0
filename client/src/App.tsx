@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, NavLink } from 'react-router-dom'
+import Home from './pages/Home'
+import CodeEditor from './pages/CodeEditor'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{minHeight:'100vh', display:'flex', flexDirection:'column'}}>
+      <header style={{display:'flex', gap:16, alignItems:'center', padding:'12px 16px', borderBottom:'1px solid #eee'}}>
+        <NavLink to="/" style={{textDecoration:'none', fontWeight:700}}>⚡ React + code-server</NavLink>
+        <nav style={{display:'flex', gap:12}}>
+          <NavLink to="/" style={({isActive})=>({textDecoration: isActive ? 'underline' : 'none'})}>Home</NavLink>
+          <NavLink to="/code-editor" style={({isActive})=>({textDecoration: isActive ? 'underline' : 'none'})}>Code Editor</NavLink>
+        </nav>
+      </header>
+      <main style={{flex:1}}>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/code-editor" element={<CodeEditor/>} />
+        </Routes>
+      </main>
+      <footer style={{padding:'12px 16px', borderTop:'1px solid #eee', fontSize:12, color:'#666'}}>
+        Built with React + Vite + Docker + code-server
+      </footer>
+    </div>
   )
 }
-
-export default App
