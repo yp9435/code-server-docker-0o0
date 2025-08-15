@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home'
-import CodeEditor from './pages/CodeEditor'
+import CodeEditor from './pages/Codeeditor'
 
 export default function App() {
   return (

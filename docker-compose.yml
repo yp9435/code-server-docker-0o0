@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  code-server:
+    image: codercom/code-server:latest
+    environment:
+      - PASSWORD=${CODE_SERVER_PASSWORD}
+    volumes:
+      - ./workspace:/home/coder/project
+      - ./code-server-data:/home/coder/.local/share/code-server
+      - ./code-server-config:/home/coder/.config/code-server
+    command: ["--auth","password","--bind-addr","0.0.0.0:8080","/home/coder/project"]
+    ports:
+      - "8080:8080"
